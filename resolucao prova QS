@@ -3,6 +3,20 @@ a) Quais sao as etapas  do modelo cascata?
 b) Cite 2 atribuçoes do modelo cascata
 c) Cite 3 problemas do modelo cascata
 
+Requisitos: Levantamento e análise de todas as necessidades do cliente, resultando em um documento de especificação.
+Projeto (Design): Planejamento da arquitetura do sistema, estrutura de dados e interface.
+Implementação (Codificação): A fase onde o software é efetivamente escrito/programado.
+Verificação (Testes): Testes do sistema completo para encontrar erros e garantir que os requisitos foram atendidos.
+Manutenção: Suporte contínuo, correção de bugs e atualizações após a entrega.
+
+b) Estrutura Sequencial: O fluxo de desenvolvimento é unidirecional. Como uma cascata real, o trabalho flui sempre para baixo e não retorna facilmente às fases anteriores.
+Documentação Extensa: Cada fase exige a entrega de documentos formais aprovados antes da próxima etapa iniciar, o que gera um controle rígido sobre o que foi planejado.
+
+c) Dificuldade em acomodar mudanças: Como o planejamento é feito todo no início, alterar requisitos no meio do processo é extremamente caro e difícil.
+Risco de "Big Bang": O cliente só vê o produto final no fim do ciclo de desenvolvimento. Se houver um mal-entendido inicial, o erro só será descoberto após meses de trabalho.
+Fases Ociosas: Membros da equipe podem ficar parados esperando a fase anterior terminar (ex: os testadores ficam ociosos enquanto os desenvolvedores ainda estão codificando).
+
+
 3. Muitas empresas tem removido ocargo de profissionais  dedicados a QA e delegado de tarefas a pessoas desenvolvedoras,o escenario esperado dos desenvolovedores que os testes automatizados sejam criados com auxilio na IA
 afim de acelerar o desenvolvimento Descreva os pontos negativos e positivos de esta estategia.
 
@@ -15,6 +29,26 @@ Explique a relacao entre qualidade de processo e qualidade de produto no desenvo
 - Como os processos influemciam o resultado final (produto/serviço).   
 - cite pelo menos 2 exemplos praticos de atividades de garantia de qualidade
 
+Feedback Imediato (Shift-Left Testing): Ao escrever o teste enquanto desenvolve o código, o erro é detectado instantaneamente, reduzindo o custo de correção.
+
+Aceleração com IA: Ferramentas de IA podem gerar boilerplate de testes, sugerir casos de borda (edge cases) e criar dados sintéticos de teste rapidamente, poupando tempo braçal.
+
+Maior Propriedade (Ownership): O desenvolvedor passa a se preocupar mais com a arquitetura do código para que ele seja "testável", resultando em sistemas mais robustos e menos propensos a bugs estruturais.
+
+Redução de Gargalos: Elimina-se o tempo de espera pelo "mão a mão" (handoff) entre o desenvolvimento e o time de QA.
+
+Pontos Negativos
+A remoção de especialistas e a dependência da IA também apresentam riscos críticos:
+
+Viés de Confirmação: Quem escreve o código tende a testar apenas o caminho que planejou (o "caminho feliz"). O QA dedicado tem o "olhar de destruição" necessário para encontrar falhas que o desenvolvedor ignora por proximidade com a solução.
+
+Alucinações da IA: IAs podem sugerir testes que parecem corretos, mas que não validam a lógica de negócio real ou, pior, criam testes que passam mesmo quando o código está errado (falsos positivos).
+
+Sobrecarga da Pessoa Desenvolvedora: Acumular as funções de arquitetura, codificação, segurança e agora QA pode levar ao burnout ou à queda na qualidade de ambas as frentes por falta de tempo.
+
+Perda da Visão Sistêmica: O QA tradicional olha para a experiência do usuário e para a integração de ponta a ponta. Desenvolvedores focados em IA tendem a focar em testes unitários, deixando lacunas em testes de integração complexos e de usabilidade.
+
+
 10.
 Carateristicas dos modelos CMMI e MPS.BR
 resposta: O MPS.BR foi criado com foco na realidade de empresas brasileiras, oferecendo uma implementaçao mais gradual e accesivel, enquanto o CCMI possui maior reconhecimento internacional.
@@ -23,3 +57,7 @@ resposta: O MPS.BR foi criado com foco na realidade de empresas brasileiras, ofe
 I. O scrum adota a entrega incremental por meio de sprints
 II. O scrum adota a simplicidade por meio do uso de programaçao de pares
 III. O scrum adota o envolvimento do cliente com a priorizaçao e a negociaçao dos requisitos de percepçao de sprints
+
+https://www.magnific.com/br/imagem-ia-premium/um-desenho-de-um-dragao-com-uma-lua-cheia-ao-fundo-ia-generativa_80845823.htm
+
+
