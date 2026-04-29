@@ -19,16 +19,6 @@ Fases Ociosas: Membros da equipe podem ficar parados esperando a fase anterior t
 
 3. Muitas empresas tem removido ocargo de profissionais  dedicados a QA e delegado de tarefas a pessoas desenvolvedoras,o escenario esperado dos desenvolovedores que os testes automatizados sejam criados com auxilio na IA
 afim de acelerar o desenvolvimento Descreva os pontos negativos e positivos de esta estategia.
-
-7.
-Atividades de garantia de qualidade se tornaram fundamentales na era de revoluçao tecnologica , sendo um fator de vantagem  do mercado Falso
-
-NR8402 significa totatlidade explicitas e inplicitas verdadeiro
-6.
-Explique a relacao entre qualidade de processo e qualidade de produto no desenvolvimento de software.
-- Como os processos influemciam o resultado final (produto/serviço).   
-- cite pelo menos 2 exemplos praticos de atividades de garantia de qualidade
-
 Feedback Imediato (Shift-Left Testing): Ao escrever o teste enquanto desenvolve o código, o erro é detectado instantaneamente, reduzindo o custo de correção.
 
 Aceleração com IA: Ferramentas de IA podem gerar boilerplate de testes, sugerir casos de borda (edge cases) e criar dados sintéticos de teste rapidamente, poupando tempo braçal.
@@ -48,16 +38,55 @@ Sobrecarga da Pessoa Desenvolvedora: Acumular as funções de arquitetura, codif
 
 Perda da Visão Sistêmica: O QA tradicional olha para a experiência do usuário e para a integração de ponta a ponta. Desenvolvedores focados em IA tendem a focar em testes unitários, deixando lacunas em testes de integração complexos e de usabilidade.
 
+7.
+Atividades de garantia de qualidade se tornaram fundamentales na era de revoluçao tecnologica , sendo um fator de vantagem  do mercado Falso
+
+NR8402 significa totatlidade explicitas e inplicitas verdadeiro
+
+6.
+Explique a relacao entre qualidade de processo e qualidade de produto no desenvolvimento de software.
+- Como os processos influemciam o resultado final (produto/serviço).   
+- cite pelo menos 2 exemplos praticos de atividades de garantia de qualidade
+
+Previsibilidade e Repetibilidade: Processos padronizados garantem que o sucesso de um projeto não dependa apenas do "heroísmo" de um desenvolvedor talentoso
+Detecção Precoce de Defeitos: Quanto mais tarde um erro é descoberto, mais caro é para corrigi-lo.
+Redução de Retrabalho: Processos de qualidade (como a definição clara de "Pronto") evitam que a equipe precise refazer funcionalidades por falta de alinhamento
+
+A. Revisão por Pares (Peer Review / Code Review)
+Em vez de apenas testar o software depois de pronto, os desenvolvedores revisam o código uns dos outros enquanto ele é produzido.
+
+Impacto no Produto: Melhora a legibilidade do código, dissemina o conhecimento técnico entre a equipe e identifica falhas
+B. Auditoria de Processos (Process Audits)
+Consiste em verificar se a equipe está seguindo os padrões estabelecidos (ex: se os testes unitários estão sendo feitos, se a documentação está atualizada e se os ritos de validação com o cliente ocorreram).
+Impacto no Produto: Garante que os critérios de aceitação e os requisitos de conformidade (como leis de proteção de dados) sejam respeitados do início ao fim,
 
 10.
 Carateristicas dos modelos CMMI e MPS.BR
-resposta: O MPS.BR foi criado com foco na realidade de empresas brasileiras, oferecendo uma implementaçao mais gradual e accesivel, enquanto o CCMI possui maior reconhecimento internacional.
+Resposta: O MPS.BR foi criado com foco na realidade de empresas brasileiras, oferecendo uma implementaçao mais gradual e accesivel, enquanto o CCMI possui maior reconhecimento internacional.
 
 11. 
 I. O scrum adota a entrega incremental por meio de sprints
 II. O scrum adota a simplicidade por meio do uso de programaçao de pares
 III. O scrum adota o envolvimento do cliente com a priorizaçao e a negociaçao dos requisitos de percepçao de sprints
 
+Correta afirmação é a I
+
 https://www.magnific.com/br/imagem-ia-premium/um-desenho-de-um-dragao-com-uma-lua-cheia-ao-fundo-ia-generativa_80845823.htm
 
 
+
+
+
+
+
+
+
+Este trabalho consiste em: Ideia criada pela UVV , com o apoio de todos os alunos da área de tecnologia.
+
+O que estamos solicitando é o seu apoio como empresa neste projeto em andamento. 
+
+Que precisamos de voces
+Buscamos um patrocinador para aumentar a visibilidade deste trabalho.Inicialmente, estamos buscando patrocinadores apenas de empresas que estejam alinhadas com as necessidades do projeto. 
+Nesta fase, sua confiança é o maior apoio que você pode nos oferecer. É por isso que estamos lhe fazendo esta pergunta.
+
+No momento só precisamos patrocinadores, todas as informações do projeto vou a enviar por este meio.  No personal, eu foi enviado pelo lider para procurar patrocinadores. Meus dados para contato são: telefone: 27992890340, CPF: 088816981-70, Nome: Jesus Fabian Mogollon Flores. Espero sua poronta resposta.
