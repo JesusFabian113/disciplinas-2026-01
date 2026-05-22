@@ -244,3 +244,4 @@ DENY INSERT, UPDATE
 ON pagar
 TO usu_financeiro;
 GO
+uma representação matemática ou gráfica que descreve o comportamento de um sistema dinâmico com base em suas variáveis internas, entradas e saídas.
