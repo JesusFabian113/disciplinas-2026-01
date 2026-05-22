@@ -1,0 +1,246 @@
+ PASSO 1 - Criar MASTER KEY
+   (execute apenas uma vez no banco)
+   ========================================================= */
+CREATE MASTER KEY
+ENCRYPTION BY PASSWORD = 'SenhaForte@123';
+GO
+
+/* =========================================================
+   PASSO 2 - Criar CERTIFICADO
+   ========================================================= */
+CREATE CERTIFICATE CertificadoEmpresa
+WITH SUBJECT = 'Certificado para criptografia de CNPJ';
+GO
+
+/* =========================================================
+   PASSO 3 - Criar CHAVE SIMÉTRICA
+   ========================================================= */
+CREATE SYMMETRIC KEY ChaveCNPJ
+WITH ALGORITHM = AES_256
+ENCRYPTION BY CERTIFICATE CertificadoEmpresa;
+GO
+
+/* =========================================================
+   Exemplo de tabela empresa
+   ========================================================= */
+-- CREATE TABLE empresa (
+--     id INT IDENTITY PRIMARY KEY,
+--     nome VARCHAR(200),
+--     cnpj_cripto VARBINARY(MAX)
+-- );
+-- GO
+
+/* =========================================================
+   PASSO 4 - PROCEDURE PARA INSERIR EMPRESA
+   ========================================================= */
+CREATE PROCEDURE sp_inserir_empresa
+(
+    @nome VARCHAR(200),
+    @cnpj VARCHAR(20)
+)
+AS
+BEGIN
+
+    -- abre a chave
+    OPEN SYMMETRIC KEY ChaveCNPJ
+    DECRYPTION BY CERTIFICATE CertificadoEmpresa;
+
+    -- insere criptografado
+    INSERT INTO empresa(nome, cnpj_cripto)
+    VALUES
+    (
+        @nome,
+        ENCRYPTBYKEY(KEY_GUID('ChaveCNPJ'), @cnpj)
+    );
+
+    -- fecha a chave
+    CLOSE SYMMETRIC KEY ChaveCNPJ;
+
+END;
+GO
+
+/* =========================================================
+   EXEMPLO DE USO
+   ========================================================= */
+EXEC sp_inserir_empresa
+    @nome = 'Empresa ABC',
+    @cnpj = '12.345.678/0001-99';
+GO
+
+/* =========================================================
+   CONSULTAR DADOS DESCRIPTOGRAFADOS
+   (somente quem tiver acesso ao certificado)
+   ========================================================= */
+
+OPEN SYMMETRIC KEY ChaveCNPJ
+DECRYPTION BY CERTIFICATE CertificadoEmpresa;
+
+SELECT
+    nome,
+    CONVERT(VARCHAR(20), DECRYPTBYKEY(cnpj_cripto)) AS cnpj
+FROM empresa;
+
+CLOSE SYMMETRIC KEY ChaveCNPJ;
+GO
+
+exercicio 3: 
+
+      CREATE TABLE contas_pagar (
+--     id INT IDENTITY PRIMARY KEY,
+--     nome_empresa VARCHAR(200),
+--     descricao VARCHAR(300),
+--     data_vencimento DATE,
+--     valor DECIMAL(10,2),
+--     pago BIT
+-- );
+-- GO
+
+/* =========================================================
+   PROCEDURE DE CONSULTA
+   ========================================================= */
+CREATE PROCEDURE sp_contas_vencidas
+(
+    @data_inicio DATE,
+    @data_fim DATE,
+    @parte_nome_empresa VARCHAR(100)
+)
+AS
+BEGIN
+
+    SET NOCOUNT ON;
+
+    SELECT
+        nome_empresa AS [Nome da empresa],
+        descricao AS [Descrição],
+        data_vencimento AS [Data Vencimento],
+
+        DATEDIFF(DAY, data_vencimento, GETDATE()) 
+            AS [Qtd dias vencidos]
+
+    FROM contas_pagar
+
+    WHERE
+        pago = 0
+        AND data_vencimento < GETDATE()
+
+        AND data_vencimento BETWEEN @data_inicio AND @data_fim
+
+        AND nome_empresa LIKE '%' + @parte_nome_empresa + '%'
+
+    ORDER BY data_vencimento;
+
+END;
+GO
+
+Para saber se está rodando: 
+EXEC sp_contas_vencidas
+    @data_inicio = '2024-01-01',
+    @data_fim = '2024-12-31',
+    @parte_nome_empresa = 'ABC';
+GO
+
+4. 
+I) ✅ Correta
+
+No SQL Server existe:
+
+Criptografia em nível de banco (TDE – Transparent Data Encryption)
+Transparente para aplicação, sem alterar INSERT/SELECT.
+Criptografia em nível de coluna
+Exige uso de:
+ENCRYPTBYKEY
+DECRYPTBYKEY
+
+II) ✅ Correta
+
+A TDE usa:
+
+Master Key
+Certificate
+Database Encryption Key
+
+O certificado é armazenado no banco/master.
+
+III) ✅ Correta
+
+Na criptografia de coluna:
+
+Os dados criptografados só podem ser lidos abrindo a chave:  OPEN SYMMETRIC KEY ...
+
+IV) ❌ Incorreta
+
+O comando:
+
+CREATE CERTIFICATE Meu_certificado
+WITH SUBJECT = 'Certificado para TDE';
+
+NÃO, gera erro.
+A senha é opcional dependendo do cenário.
+
+10. a) A procedure é vulnerável a SQL Injection?
+✅ Sim.
+
+A SP concatena diretamente os valores recebidos (@usuario e @senha) dentro da string SQL:
+
+SET @consulta =
+'SELECT usu_nome FROM usuarios
+ WHERE usu_nome = ''' + @usuario + '''
+ AND usu_senha = ''' + @senha + '''';
+
+b) Procedure corrigida (imune a SQL Injection)
+
+A solução correta é usar:
+
+- sp_executesql
+- parâmetros tipados
+
+DROP PROC IF EXISTS validaUsuario;
+GO
+
+CREATE PROC validaUsuario
+(
+    @usuario VARCHAR(100),
+    @senha   VARCHAR(20)
+)
+AS
+BEGIN
+
+    DECLARE @consulta NVARCHAR(500);
+
+    SET @consulta =
+    N'SELECT usu_nome
+      FROM usuarios
+      WHERE usu_nome = @pUsuario
+      AND usu_senha = @pSenha';
+
+    EXEC sp_executesql
+        @consulta,
+        N'@pUsuario VARCHAR(100),
+          @pSenha   VARCHAR(20)',
+        @pUsuario = @usuario,
+        @pSenha   = @senha;
+
+END;
+GO
+Porque:
+os valores não são concatenados na query;
+os parâmetros são tratados como dados;
+comandos maliciosos não são executados.
+
+11. a) 
+CREATE ROLE RoleFinanceira;
+GO
+permissoes de leitura,escrita,consulta 
+GRANT SELECT, INSERT, UPDATE
+ON pagar
+TO RoleFinanceira;
+GO
+b) Adicionar usuário usu_financeiro
+ALTER ROLE RoleFinanceira
+ADD MEMBER usu_financeiro;
+GO
+Remover permissão de escrita
+DENY INSERT, UPDATE
+ON pagar
+TO usu_financeiro;
+GO
